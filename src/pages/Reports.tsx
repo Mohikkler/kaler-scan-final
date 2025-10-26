@@ -6,7 +6,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/hooks/useAuth';
-import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import Navigation from '@/components/Navigation';
 import { 
@@ -41,7 +40,7 @@ export default function Reports() {
 
   useEffect(() => {
     fetchReports();
-  }, [fetchReports]);
+  }, []);
 
   // Redirect if not authenticated (after all hooks)
   if (!loading && !user && !isLoggedIn()) {
@@ -56,29 +55,8 @@ export default function Reports() {
         signOut();
         return;
       }
-
-      // Get patient ID from phone number
-      const { data: patient } = await supabase
-        .from('patients')
-        .select('id')
-        .eq('phone_number', phone)
-        .maybeSingle();
-
-      if (!patient) {
-        toast.error('Patient profile not found. Please contact support.');
-        return;
-      }
-
-      // Fetch reports for this patient
-      const { data: reportsData, error } = await supabase
-        .from('reports')
-        .select('*')
-        .eq('patient_id', patient.id)
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-
-      setReports(reportsData || []);
+      // Supabase removed: show an empty list with helpful guidance
+      setReports([]);
     } catch (error: any) {
       console.error('Error fetching reports:', error);
       toast.error('Failed to load reports');

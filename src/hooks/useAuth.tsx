@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
 interface AuthContextType {
@@ -23,36 +22,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // Set up auth state listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        
-        // Check if user is admin
-        if (session?.user) {
-          const { data } = await supabase
-            .from('admin_users')
-            .select('id')
-            .eq('user_id', session.user.id)
-            .maybeSingle();
-          setIsAdmin(!!data);
-        } else {
-          setIsAdmin(false);
-        }
-        
-        setLoading(false);
-      }
-    );
-
-    // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    // No Supabase: derive lightweight state from localStorage only
+    const phone = localStorage.getItem('current_phone');
+    setUser(null);
+    setSession(null);
+    setIsAdmin(false);
+    // if phone exists, consider "logged in" for UI flow
+    setLoading(false);
   }, []);
 
   // Check if user is logged in based on phone number in localStorage
@@ -131,17 +107,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signOut = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      
-      localStorage.removeItem('current_phone');
-      toast.success('Logged out successfully');
-    } catch (error: unknown) {
-      console.error('Error during logout:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to logout';
-      toast.error(errorMessage);
-    }
+    localStorage.removeItem('current_phone');
+    toast.success('Logged out successfully');
   };
 
   return (
