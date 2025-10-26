@@ -12,7 +12,7 @@ import {
   Shield
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import doctorImage from "@/assets/doctor-profile.jpg";
+const doctorImage = "/dad image.jpeg";
 import heroImage from "@/assets/hero-medical.jpg";
 
 const About = () => {
@@ -20,24 +20,26 @@ const About = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       
-      {/* Header Section */}
-      <section className="relative bg-gradient-to-r from-medical-blue to-medical-blue-dark text-white py-16 overflow-hidden">
-        {/* Background Image with Overlay */}
+      {/* Header Section (refined with blurred hospital background) */}
+      <section className="relative bg-gradient-to-r from-medical-blue to-medical-blue-dark text-white py-[75px] overflow-hidden">
+        {/* Blurred background hospital image */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src={heroImage} 
-            alt="About Kaler Scan Centre"
-            className="w-full h-full object-cover opacity-40 transform scale-105"
+          <img
+            src={heroImage}
+            alt="Hospital background"
+            className="w-full h-full object-cover opacity-60 blur-sm scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-medical-blue/40 via-medical-blue-dark/35 to-medical-blue/50"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-medical-blue/50 via-medical-blue-dark/40 to-black/30" />
         </div>
-        
+        <div className="absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">About Kaler Scan Centre</h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Dedicated to providing exceptional diagnostic imaging services with advanced technology and compassionate care
+            <h1 className="font-bold tracking-tight text-3xl md:text-4xl lg:text-[2.75rem] mt-[50px]">About Kaler Scan Centre</h1>
+            <p className="mt-3 text-sm md:text-base text-blue-100 max-w-3xl mx-auto leading-relaxed">
+              Trusted ultrasound and X‑ray diagnostics in Shahkot — combining modern Samsung V6 technology with
+              compassionate, patient‑first care.
             </p>
           </div>
         </div>
@@ -95,11 +97,11 @@ const About = () => {
                 <img 
                   src={doctorImage} 
                   alt="Dr. Kuldip Kaler"
-                  className="rounded-2xl shadow-2xl w-full max-w-md mx-auto"
+                  className="rounded-2xl shadow-2xl w-full max-w-md mx-auto h-[510px] object-cover object-center"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-medical-blue text-white p-4 rounded-lg shadow-lg">
                   <div className="text-center">
-                    <div className="text-2xl font-bold">15+</div>
+                    <div className="text-2xl font-bold">25+</div>
                     <div className="text-sm">Years Experience</div>
                   </div>
                 </div>

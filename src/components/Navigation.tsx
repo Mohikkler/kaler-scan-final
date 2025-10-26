@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Calendar, FileText } from "lucide-react";
+import { Menu, X, Calendar, Instagram } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import KSCLogo from "./KSCLogo";
 
@@ -18,7 +18,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white/90 backdrop-blur-md shadow-lg fixed top-0 left-0 right-0 z-50 border-b border-white/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -49,16 +49,19 @@ const Navigation = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
+            <a
+              href="https://www.instagram.com/kalerscancentre?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center h-9 w-9 rounded-md border border-gray-200 text-pink-600 hover:text-pink-700 hover:bg-pink-50 transition-colors"
+              aria-label="Kaler Scan Centre on Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
             <Button variant="medical-outline" size="sm" asChild>
               <Link to="/appointments">
                 <Calendar className="w-4 h-4" />
                 Book Appointment
-              </Link>
-            </Button>
-            <Button variant="medical" size="sm" asChild>
-              <Link to="/auth">
-                <FileText className="w-4 h-4" />
-                Patient Login
               </Link>
             </Button>
           </div>
@@ -94,16 +97,18 @@ const Navigation = () => {
                 </Link>
               ))}
               <div className="px-3 py-2 space-y-2">
+                <a
+                  href="https://www.instagram.com/kalerscancentre?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full border rounded-md py-2 text-pink-600 border-gray-200"
+                >
+                  <Instagram className="w-4 h-4" /> Instagram
+                </a>
                 <Button variant="medical-outline" size="sm" className="w-full" asChild>
                   <Link to="/appointments">
                     <Calendar className="w-4 h-4" />
                     Book Appointment
-                  </Link>
-                </Button>
-                <Button variant="medical" size="sm" className="w-full" asChild>
-                  <Link to="/auth">
-                    <FileText className="w-4 h-4" />
-                    Patient Login
                   </Link>
                 </Button>
               </div>

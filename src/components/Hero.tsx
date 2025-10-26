@@ -1,72 +1,73 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, FileText, MapPin, Phone } from "lucide-react";
+import { Calendar, Phone } from "lucide-react";
+import { CalendarIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-medical.jpg";
+import medicalRoomBackground from "@/assets/medical-room-background.png";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[600px] md:min-h-[700px] bg-gradient-to-br from-medical-blue via-medical-blue-dark to-medical-blue flex items-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={heroImage} 
-          alt="Kaler Scan Centre - Advanced Diagnostic Center"
-          className="w-full h-full object-cover opacity-40 transform scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-medical-blue/40 via-medical-blue-dark/35 to-medical-blue/50"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-      </div>
+    <section 
+      className="relative flex items-center overflow-hidden" 
+      style={{ 
+        height: '85vh', 
+        backgroundImage: `url(${medicalRoomBackground})`,
+        backgroundSize: 'contain',
+        backgroundPosition: 'right center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#F7F9FC' // Match the KPI section background
+      }}
+    >
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="text-center text-white">
-          {/* Main Heading */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-            KALER SCAN CENTRE
+
+      <div className="relative z-20 px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        {/* Clinic Name - Positioned at top */}
+        <div className="absolute -top-16 left-40 text-white animate-fade-in-up" style={{ fontFamily: 'Formative, sans-serif' }}>
+          <h1 className="text-xl md:text-2xl text-white font-light tracking-wider animate-fade-in-up animation-delay-200" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.3)' }}>
+            KALER
           </h1>
-          <p className="text-lg md:text-xl mb-2 text-blue-100">
-            Advanced Diagnostic Imaging Services
-          </p>
-          <p className="text-sm md:text-base mb-8 text-blue-200">
-            Near City Hospital, Shahkot, Jalandhar
-          </p>
+          <h2 className="text-xl md:text-2xl text-white font-light tracking-wider animate-fade-in-up animation-delay-400" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.8)' }}>
+            SCAN CENTRE
+          </h2>
+        </div>
+
+        <div className="text-white max-w-xl ml-32 mt-16">
+          {/* Main Heading */}
+          <h2 className="text-4xl md:text-4xl lg:text-4xl font-bold mb-6 leading-tight text-white animate-fade-in-up animation-delay-800" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.8)' }}>
+            Advanced Diagnostics
+            <br />
+            <span className="text-blue-200 animate-fade-in-up animation-delay-1000" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.4)' }}>for Your Health</span>
+          </h2>
           
-          {/* Primary Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 max-w-md mx-auto">
-            <Button size="lg" className="bg-white text-medical-blue hover:bg-white/90 hover:scale-105 shadow-xl text-base py-3 min-h-[48px] transition-all duration-300 font-semibold" asChild>
+          {/* Call-to-Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-1200">
+            <Button 
+              size="lg" 
+              className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl text-base py-3 px-8 min-h-[48px] transition-all duration-300 font-semibold group" 
+              style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.3)' }}
+              asChild
+            >
               <Link to="/appointments">
-                <Calendar className="w-5 h-5" />
+                <CalendarIcon className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
                 Book Appointment
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="border-white/80 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-medical-blue text-base py-3 min-h-[48px] transition-all duration-300" asChild>
-              <Link to="/reports">
-                <FileText className="w-5 h-5" />
-                Check Reports
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-white/80 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-blue-600 shadow-lg hover:shadow-xl text-base py-3 px-8 min-h-[48px] transition-all duration-300 group" 
+              style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.3)' }}
+              asChild
+            >
+              <Link to="/contact">
+                <PhoneIcon className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                Reach Us
               </Link>
             </Button>
           </div>
-
-          {/* Quick Contact & Hours */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="flex items-center justify-center space-x-3 mb-2">
-                <Phone className="w-5 h-5 text-blue-200" />
-                <p className="font-semibold text-lg">Contact Us</p>
-              </div>
-              <p className="text-blue-100 text-sm">+91 97793-86009</p>
-              <p className="text-blue-100 text-sm">+91 98767-59939</p>
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="flex items-center justify-center space-x-3 mb-2">
-                <MapPin className="w-5 h-5 text-blue-200" />
-                <p className="font-semibold text-lg">Open Daily</p>
-              </div>
-              <p className="text-xl font-bold text-white">9:00 AM - 5:00 PM</p>
-            </div>
-          </div>
         </div>
       </div>
+      
+
     </section>
   );
 };

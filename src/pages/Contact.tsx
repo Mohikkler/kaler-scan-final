@@ -9,7 +9,8 @@ import {
   Phone, 
   Clock, 
   Mail, 
-  MessageSquare
+  MessageSquare,
+  Instagram
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -114,7 +115,7 @@ const Contact = () => {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 mt-[20px]">Contact Us</h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
               Get in touch with our medical team for appointments, inquiries, or support
             </p>
@@ -162,6 +163,14 @@ const Contact = () => {
                       <p className="text-gray-700">
                         <strong>Harpreet Singh:</strong> +91 98767-59939
                       </p>
+                      <a
+                        href="https://www.instagram.com/kalerscancentre?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700"
+                      >
+                        <Instagram className="w-4 h-4" /> Instagram
+                      </a>
                     </div>
                   </CardContent>
                 </Card>

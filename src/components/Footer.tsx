@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Clock, Mail } from "lucide-react";
+import { Phone, MapPin, Clock, Mail, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
               <img src="/footer-logo.svg" alt="KSC Footer Logo" className="h-10 w-10 object-contain mr-2" />
               <div>
                 <h3 className="font-bold text-xl text-white">Kaler Scan Centre</h3>
-                <p className="text-gray-400 text-sm">& Digital X-Ray</p>
+                <p className="text-gray-400 text-sm font-semibold">& Digital X-Ray</p>
               </div>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -20,6 +20,15 @@ const Footer = () => {
               Professional care and accurate results for all your medical imaging needs.
             </p>
             <div className="flex space-x-4">
+              <a
+                href="https://www.instagram.com/kalerscancentre?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-medical-blue rounded-full flex items-center justify-center hover:bg-medical-blue-dark transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
               <div className="w-10 h-10 bg-medical-blue rounded-full flex items-center justify-center hover:bg-medical-blue-dark transition-colors">
                 <Phone className="w-5 h-5" />
               </div>
@@ -49,13 +58,13 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/auth" className="text-gray-300 hover:text-white transition-colors">
-                  Patient Login
+                <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
-                  About Us
+                <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>

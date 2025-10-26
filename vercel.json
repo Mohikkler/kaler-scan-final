@@ -20,6 +20,8 @@
     }
   ],
   "env": {
-    "VITE_GOOGLE_MAPS_API_KEY": "AIzaSyD-zlhqhDnGrd1-HW0pifJQ3MNsIFXP150"
+    "VITE_GOOGLE_MAPS_API_KEY": "",
+    "VITE_SUPABASE_URL": "",
+    "VITE_SUPABASE_ANON_KEY": ""
   }
 } 

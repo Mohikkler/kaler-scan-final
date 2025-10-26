@@ -13,6 +13,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({ title, description, icon: Icon, href, featured = false, image }: ServiceCardProps) => {
+  const isExternal = href?.startsWith("http");
   return (
     <Card className={`group cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-medical-blue/10 ${
       featured ? "ring-2 ring-medical-blue ring-opacity-20 bg-gradient-to-br from-medical-blue-light to-white" : ""
@@ -46,10 +47,17 @@ const ServiceCard = ({ title, description, icon: Icon, href, featured = false, i
         </CardDescription>
         {href && (
           <Button variant={featured ? "medical" : "medical-outline"} size="sm" asChild>
-            <Link to={href} className="group/btn">
-              Learn More
-              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-            </Link>
+            {isExternal ? (
+              <a href={href} target="_blank" rel="noopener noreferrer" className="group/btn">
+                Learn More
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </a>
+            ) : (
+              <Link to={href} className="group/btn">
+                Learn More
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </Link>
+            )}
           </Button>
         )}
       </CardContent>

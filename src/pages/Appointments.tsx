@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import doctorImage from "@/assets/doctor-profile.jpg";
+const doctorImage = "/dad image.jpeg";
 
 const Appointments = () => {
   const navigate = useNavigate();
@@ -150,13 +150,14 @@ const Appointments = () => {
       <Navigation />
       
       {/* Header Section */}
-      <section className="relative bg-gradient-to-r from-medical-blue to-medical-blue-dark text-white py-16 overflow-hidden">
+      <section className="relative bg-gradient-to-r from-medical-blue to-medical-blue-dark text-white py-24 overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
             src={doctorImage} 
             alt="Book Your Appointment"
-            className="w-full h-full object-cover opacity-40 transform scale-105"
+            className="w-full h-full object-cover opacity-40"
+            style={{ objectPosition: "center 20%" }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-medical-blue/40 via-medical-blue-dark/35 to-medical-blue/50"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
