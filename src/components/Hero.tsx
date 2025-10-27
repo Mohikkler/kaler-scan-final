@@ -3,15 +3,25 @@ import { Calendar, Phone } from "lucide-react";
 import { CalendarIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import medicalRoomBackground from "@/assets/medical-room-background.png";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   return (
     <section 
       className="relative flex items-center overflow-hidden min-h-[70vh] md:h-[85vh] bg-[#F7F9FC]"
       style={{ 
         backgroundImage: `url(${medicalRoomBackground})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: isMobile ? 'calc(50% + 40px) center' : 'center',
         backgroundRepeat: 'no-repeat'
       }}
     >

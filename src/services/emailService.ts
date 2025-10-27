@@ -1,21 +1,28 @@
 import nodemailer from 'nodemailer';
 
-// Email configuration
-const emailConfig = {
-  service: 'gmail',
-  auth: {
-    user: 'mohikkler123@gmail.com', // Your Gmail address
-    pass: 'sxly vgyn fixa rftq' // Your app password
-  },
-  secure: true, // Use SSL/TLS
-  port: 465, // Gmail SMTP port for SSL
-  tls: {
-    rejectUnauthorized: false // Allow self-signed certificates
-  }
-};
+// Email configuration via environment variables
+// Required:
+//  - SMTP_HOST (e.g., mail.spacemail.com)
+//  - SMTP_PORT (e.g., 465)
+//  - SMTP_USER (e.g., admin@kalerscan.com)
+//  - SMTP_PASS (password for the mailbox)
+// Optional:
+//  - SMTP_FROM (display From, defaults to SMTP_USER)
+const SMTP_HOST = process.env.SMTP_HOST || '';
+const SMTP_PORT = Number(process.env.SMTP_PORT || 465);
+const SMTP_USER = process.env.SMTP_USER || '';
+const SMTP_PASS = process.env.SMTP_PASS || '';
+const SMTP_FROM = process.env.SMTP_FROM || SMTP_USER || 'admin@kalerscan.com';
 
-// Create transporter
-const transporter = nodemailer.createTransport(emailConfig);
+const transporter = nodemailer.createTransport({
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  secure: SMTP_PORT === 465, // true for 465 (SSL), false for 587/STARTTLS
+  auth: {
+    user: SMTP_USER,
+    pass: SMTP_PASS,
+  },
+});
 
 // Generate OTP
 export const generateOTP = (): string => {
@@ -137,7 +144,7 @@ export const sendOTPEmail = async (to: string, otp: string, phone: string): Prom
     console.log(`OTP: ${otp} for phone: ${phone}`);
     
     const mailOptions = {
-      from: 'Kaler Scan Center <mohikkler123@gmail.com>',
+      from: `Kaler Scan Centre <${SMTP_FROM}>`,
       to: to,
       subject: 'Your Verification Code - Kaler Scan Center',
       html: createOTPEmailTemplate(otp)
@@ -362,7 +369,7 @@ export const sendContactMessageEmail = async (toEmail: string, subject: string, 
     console.log('From:', fromEmail);
 
     const mailOptions = {
-      from: `"Kaler Scan Centre Website" <mohikkler123@gmail.com>`,
+      from: `"Kaler Scan Centre Website" <${SMTP_FROM}>`,
       to: toEmail,
       subject: subject,
       html: htmlContent,
@@ -398,7 +405,7 @@ export const sendAppointmentConfirmationEmail = async (appointmentData: {
     console.log(`Attempting to send appointment confirmation email to: ${appointmentData.email}`);
     
     const mailOptions = {
-      from: 'Kaler Scan Center <mohikkler123@gmail.com>',
+      from: `Kaler Scan Centre <${SMTP_FROM}>`,
       to: appointmentData.email,
       subject: `Appointment Confirmed - ${appointmentData.appointmentId} - Kaler Scan Center`,
       html: createAppointmentConfirmationTemplate(appointmentData)
